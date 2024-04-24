@@ -1,26 +1,27 @@
 #include <iostream>
-#include <cstdlib> // Required for rand() and srand()
-#include <ctime>   // Required for time()
+#include <cstdlib> // For rand() and srand()
+#include <ctime>   // For time()
 
-using namespace std;
 int main() {
-    // Initialize random seed
-    srand(time(0));
+    // Seed the random number generator with the current time
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
-    // Generating a random number between 0 and 11
-    int daysUntilExpiration = rand() % 12;
+    // Generate a random integer between 0 and 11
+    int daysUntilExpiration = std::rand() % 12; // Generates a number in the range [0, 11]
 
-    // Checking the subscription status and output the appropriate message
-    if (daysUntilExpiration == 0) {
-        cout << "Your subscription has expired.\n";
-    } else if (daysUntilExpiration == 1) {
-        cout << "Your subscription expires within a day!Renew now and save 20%."\n;
+    // Output the appropriate subscription message
+    if (daysUntilExpiration <= 0) {
+        std::cout << "Your subscription has expired." << std::endl;
+    } else if (daysUntilExpiration <= 1) {
+        std::cout << "Your subscription expires within a day!" << std::endl;
+        std::cout << "Renew now and save 20%!" << std::endl;
     } else if (daysUntilExpiration <= 5) {
-        cout << "Your subscription expires in " << daysUntilExpiration << " days\nRenew now and save 10%!"\n;
+        std::cout << "Your subscription expires in " << daysUntilExpiration << " days." << std::endl;
+        std::cout << "Renew now and save 10%!" << std::endl;
     } else if (daysUntilExpiration <= 10) {
-        cout << "Your subscription will expire soon. Renew now!"\n;
+        std::cout << "Your subscription will expire soon. Renew now!" << std::endl;
     } else {
-        cout << "You have an active subscription."\n;
+        std::cout << "You have an active subscription." << std::endl;
     }
 
     return 0;
